@@ -1,0 +1,164 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Part 1: Object as Argument
+
+// Activity 1 & 2: Rectangle Class Definition
+class Rectangle {
+private:
+	double length;
+	double width;
+
+public:
+	// Default constructor
+	Rectangle() {
+		length = 0.0;
+		width = 0.0;
+	}
+	// paramitrized constructor
+	Rectangle(double length, double width) {
+		this->length = length;
+		this->width = width;
+	}
+
+	// Public method to calculate area
+	double area() {
+		 
+		return length*width;  // Placeholder
+	}
+
+	// TODO: Define setLength() and setWidth() methods for modifying dimensions
+	void setLength(double l) {
+		
+		this->length = l;
+	}
+
+	void setWidth(double w) {
+		this->width = w;
+		
+	}
+
+	// Uncomment this code to observer the copy Copy constructor.
+	// TODO: Copy constructor that prints a message when called
+	Rectangle(const Rectangle& rect1) {
+		this->length = rect1.length;
+		this->width = rect1.width;
+		cout << "Copy Constructor called" << endl;
+		
+		// implement copy the values from other to this and print a message
+	}
+
+};
+// Function to resize a rectangle (by reference)
+void resize(Rectangle& rect, double newLength, double newWidth) {
+	rect.setLength(newLength);
+	rect.setWidth(newWidth);
+}
+// Function to create a square and return it as a Rectangle object
+Rectangle createSquare(double side)
+{
+	return Rectangle(side, side); // Placeholder, need to replace the parameters
+}
+
+
+// Part 2: Deep Copy vs. Shallow Copy
+// Activity 1 & 2: Person Class Definition
+class Person {
+private:
+	string* name;
+	int age;
+
+public:
+	// [Already Implemented] Constructor to initialize name and age
+	Person(string n, int a) {
+		this->name = new string(n);  // Allocate memory for name
+		this->age = a;
+	}
+
+	// TODO: Default copy constructor (shallow copy)
+	
+	Person(const Person& other) {
+		cout << "SHALLOW" << endl;
+		this->name = other.name;
+		this->age = other.age;
+	}
+
+	// TODO: Deep copy constructor
+	// Allocates separate memory for name
+	Person(const Person& other, bool deepCopy) {
+		cout << "DEEP" << endl;
+		if (deepCopy) {
+			//name = new string;
+			this->name = new string(*other.name);
+		}
+	}
+
+	// Destructor to free dynamically allocated memory
+	~Person() {
+		delete name;
+	}
+
+	// Setter to modify name
+	void setName(string newName) {
+		*name = newName;
+	}
+
+	// Function to print person's details
+	void printDetails() const {
+		cout << "Name: " << *name << ", Age: " << age << endl;
+	}
+};
+
+
+// [Already Done] Function to print the area of a rectangle (by value)
+void printArea(Rectangle rect) {
+	cout << "Area: " << rect.area() << endl;
+}
+
+
+
+
+int main() {
+	// Activity 1: Passing Object by Value [Already Done]
+	Rectangle rect1(5.0, 10.0);
+	printArea(rect1);
+	
+	
+	// Activity 2: Passing Object by Reference
+	
+	Rectangle rect2;
+	resize(rect2, 7.0, 14.0);
+	printArea(rect2);
+	
+	
+	
+	// Activity 3: Object as Return Value
+	Rectangle square = createSquare(5.0);
+	printArea(square);
+	
+	
+	// Activity 4: Observe Copy Constructor Behavior [Need to uncomment code for copy constructor]
+	Rectangle rect3;
+	printArea(rect3); // Observe copy constructor call
+	
+
+
+	
+	// Part 2 - Activity 1: Shallow Copy Behavior
+	Person person1("Dr. Moshin", 25);
+	Person person2 = person1;  // Shallow copy
+	person2.setName("Bob");
+	person1.printDetails();
+	person2.printDetails();
+	
+	// Part 2 - Activity 2: Deep Copy Implementation
+	Person person3("Raza", 30);
+	Person person4 = Person(person3, true);  // Deep copy
+	person4.setName("Pervaiz");
+	person3.printDetails();
+	person4.printDetails();
+	
+	return 0;
+}
