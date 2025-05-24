@@ -8,7 +8,7 @@ using namespace std;
 /* in case of public class
 class Hero
 {
-public: //agr public ni kronga to main k andr ye 2 properties access ni hoskti.
+public: 
 //properties
 int health;
 char level;
@@ -27,7 +27,7 @@ return 0;
 
 
 
-/*if u want to set it private class but also want to access outside class...like if u want to set password so that  only selected members can access. 
+
 
 class Hero
 {
@@ -173,7 +173,7 @@ public:
 	{
 		//name = n; //wrong way of doing it
 		int size = strlen(n);  //to calculate size of char array strlen is function.
-		name = new char[size + 1];  //it is better to dynamically allocate name array.//size+1 iz bcz strlen only counts cahr in array doesnot count '/0'  
+		name = new char[size + 1];   
 		for (int i = 0; i < size; i++)
 		{
 			name[i] = n[i];
