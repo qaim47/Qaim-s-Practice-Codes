@@ -2,7 +2,7 @@
 using namespace std;
 
 //Encapsulation
-/*class Hero
+class Hero
 {
 private:
 //properties
@@ -42,7 +42,7 @@ cout << "Health is " << ali.getHealth() << endl;
 cout << "Level is " << ali.getLevel() << endl;
 
 return 0;
-}*/
+}
 
 								//INHERITANCE
 
